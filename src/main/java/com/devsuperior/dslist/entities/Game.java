@@ -2,12 +2,14 @@ package com.devsuperior.dslist.entities;
 
 import java.util.Objects;
 
+
 /* Entity é responsável por fazer que uma classe no Java seja equivalente a uma tabela no banco de dados */
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "tb_game")
@@ -20,15 +22,20 @@ public class Game {
 	private Integer ano;
 	private String genero;
 	private String plataforma;
+	private Double score;
 	private String imgUrl;
+	
+	@Column(columnDefinition = "TEXT")
 	private String descricao;
+	
+	@Column(columnDefinition = "TEXT")
 	private String descricaoDetalhada;
 	
 	public Game() {
 		
 	}
 
-	public Game(Long id, String titulo, Integer ano, String genero, String plataforma, String imgUrl, String descricao,
+	public Game(Long id, String titulo, Integer ano, String genero, String plataforma, Double score, String imgUrl, String descricao,
 			String descricaoDetalhada) {
 
 		this.id = id;
@@ -36,6 +43,7 @@ public class Game {
 		this.ano = ano;
 		this.genero = genero;
 		this.plataforma = plataforma;
+		this.score = score;
 		this.imgUrl = imgUrl;
 		this.descricao = descricao;
 		this.descricaoDetalhada = descricaoDetalhada;
@@ -79,6 +87,14 @@ public class Game {
 
 	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
+	}
+
+	public Double getScore() {
+		return score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
 	}
 
 	public String getImgUrl() {
