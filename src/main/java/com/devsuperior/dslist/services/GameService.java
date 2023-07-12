@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
+import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repositories.GameRepository;
 
 /* Registra o GameService como um componente do sistema */
@@ -37,6 +38,15 @@ public class GameService {
 		/* realizar um tratamento futuramente para caso o id não existir */
 				
 		return dto;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<GameMinDTO> findByList(Long listid) {
+		
+		List<GameMinProjection> resultado = gameRepository.searchByList(listid);
+		List<GameMinDTO> dto = resultado.stream().map(x -> new GameMinDTO(x)).toList();
+		return dto;
+		
 	}
 	
 }
